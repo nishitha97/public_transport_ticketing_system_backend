@@ -1,0 +1,11 @@
+server:
+  port: 8081
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://admin:admin@dsdb-i8fcx.mongodb.net/test?retryWrites=true&w=majority
+application:
+  swagger:
+    title: Public Transport Ticketing System
+    description: CSSE_WE_32
+    version: v1.0
