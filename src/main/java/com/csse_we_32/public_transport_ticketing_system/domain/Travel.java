@@ -18,9 +18,8 @@ public class Travel {
 	private Date arrivalTime;	
 	private String currentHalt;
 	private Bus bus;
-	private String root;
-	private List<String> haltList;
-	public Travel(List<Seat> seats, String busStand, String to, Date leaveTime, Date arrivalTime, String currentHalt, Bus bus, String root, List<String> haltList) {
+	private Route route;
+	public Travel(List<Seat> seats, String busStand, String to, Date leaveTime, Date arrivalTime, String currentHalt, Bus bus, Route route) {
 		super();
 		this.seats = seats;
 		this.busStand = busStand;
@@ -30,8 +29,8 @@ public class Travel {
 	
 		this.currentHalt = currentHalt;
 		this.bus = bus;
-		this.root = root;
-		this.haltList = haltList;
+		this.route=route;
+		
 	}
 	public String getId() {
 		return id;
@@ -82,18 +81,13 @@ public class Travel {
 	public void setBus(Bus bus) {
 		this.bus = bus;
 	}
-	public String getRoot() {
-		return root;
+	public Route getRoute() {
+		return route;
 	}
-	public void setRoot(String root) {
-		this.root = root;
+	public void setRoute(Route route) {
+		this.route = route;
 	}
-	public List<String> getHaltList() {
-		return haltList;
-	}
-	public void setHaltList(List<String> haltList) {
-		this.haltList = haltList;
-	}
+	
 	
 	
 	

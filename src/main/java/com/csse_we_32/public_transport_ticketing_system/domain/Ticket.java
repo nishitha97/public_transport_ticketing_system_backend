@@ -9,6 +9,8 @@ public class Ticket {
 	private double price;
 	private Date bookedTime;
 	private Boolean purchased;
+	private String travelId;
+	private String seatNumber;
 	public Ticket(String from, String to, String root, double price, Date bookedTime, Boolean purchased) {
 		super();
 		this.from = from;
