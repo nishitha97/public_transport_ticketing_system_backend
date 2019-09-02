@@ -10,12 +10,18 @@ public class Bus {
 	private String userId;
 	private List<Integer> seatArrangement;
 	private int seats;
-	public Bus(String regNumber, String userId, List<Integer> seatArrangement, int seats) {
+	private String route;
+	private String busStand;
+	
+	public Bus(String regNumber, String userId, List<Integer> seatArrangement, int seats, String route,
+			String busStand) {
 		super();
 		this.regNumber = regNumber;
 		this.userId = userId;
 		this.seatArrangement = seatArrangement;
 		this.seats = seats;
+		this.route = route;
+		this.busStand = busStand;
 	}
 	public String getRegNumber() {
 		return regNumber;
@@ -40,6 +46,18 @@ public class Bus {
 	}
 	public void setSeats(int seats) {
 		this.seats = seats;
+	}
+	public String getRoute() {
+		return route;
+	}
+	public void setRoute(String route) {
+		this.route = route;
+	}
+	public String getBusStand() {
+		return busStand;
+	}
+	public void setBusStand(String busStand) {
+		this.busStand = busStand;
 	}
 	
 	

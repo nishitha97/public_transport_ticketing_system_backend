@@ -12,24 +12,22 @@ public class Travel {
 	@Id
 	private String id;
 	private List<Seat> seats;
-	private String from;
+	private String busStand;
 	private String to;
 	private Date leaveTime;
-	private Date arrivalTime;
-	private UserType userType;
+	private Date arrivalTime;	
 	private String currentHalt;
 	private Bus bus;
 	private String root;
 	private List<String> haltList;
-	public Travel(List<Seat> seats, String from, String to, Date leaveTime, Date arrivalTime, UserType userType,
-			String currentHalt, Bus bus, String root, List<String> haltList) {
+	public Travel(List<Seat> seats, String busStand, String to, Date leaveTime, Date arrivalTime, String currentHalt, Bus bus, String root, List<String> haltList) {
 		super();
 		this.seats = seats;
-		this.from = from;
+		this.busStand = busStand;
 		this.to = to;
 		this.leaveTime = leaveTime;
 		this.arrivalTime = arrivalTime;
-		this.userType = userType;
+	
 		this.currentHalt = currentHalt;
 		this.bus = bus;
 		this.root = root;
@@ -47,11 +45,11 @@ public class Travel {
 	public void setSeats(List<Seat> seats) {
 		this.seats = seats;
 	}
-	public String getFrom() {
-		return from;
+	public String getBusStand() {
+		return busStand;
 	}
-	public void setFrom(String from) {
-		this.from = from;
+	public void setBusStand(String busStand) {
+		this.busStand = busStand;
 	}
 	public String getTo() {
 		return to;
@@ -71,12 +69,7 @@ public class Travel {
 	public void setArrivalTime(Date arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
-	public UserType getUserType() {
-		return userType;
-	}
-	public void setUserType(UserType userType) {
-		this.userType = userType;
-	}
+	
 	public String getCurrentHalt() {
 		return currentHalt;
 	}
