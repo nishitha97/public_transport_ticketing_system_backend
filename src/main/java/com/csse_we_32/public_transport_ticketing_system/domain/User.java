@@ -13,6 +13,7 @@ public class User {
     @Id
     private String id;
 
+    
     public String getId() {
         return id;
     }
@@ -30,8 +31,25 @@ public class User {
 
     @Size(max = 11,min = 10)
     private String contactNo;
+    
+    private UserType userType;
 
-    public String getUsername() {
+    
+    
+    
+    public User(String username, String password, String email, String creditCardNo, @Size(max = 11) String nic,
+			@Size(max = 11, min = 10) String contactNo, UserType userType) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.creditCardNo = creditCardNo;
+		this.nic = nic;
+		this.contactNo = contactNo;
+		this.userType = userType;
+	}
+
+	public String getUsername() {
         return username;
     }
 
@@ -79,4 +97,18 @@ public class User {
     public void setNic(String nic) {
         this.nic = nic;
     }
+
+	public UserType getUserType() {
+		return userType;
+	}
+
+	public void setUserType(UserType userType) {
+		this.userType = userType;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+    
+    
 }

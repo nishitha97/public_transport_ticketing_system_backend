@@ -86,6 +86,12 @@ public class UserController {
         userService.deleteUser(userId);
 
     }
+    
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @GetMapping("/test")
+    public void test123() {
+       System.out.println("testing 123");
+    }
 
 }
 
