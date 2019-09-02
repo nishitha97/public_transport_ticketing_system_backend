@@ -10,8 +10,8 @@ public class Route {
 	@Id
 	private String id;
 	//private String RouteType;
-	private List<String> haltArray;
-	public Route(String id, List<String> haltArray) {
+	private List<Halt> haltArray;
+	public Route(String id, List<Halt> haltArray) {
 		super();
 		this.id = id;
 		this.haltArray = haltArray;
@@ -22,10 +22,10 @@ public class Route {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public List<String> getHaltArray() {
+	public List<Halt> getHaltArray() {
 		return haltArray;
 	}
-	public void setHaltArray(List<String> haltArray) {
+	public void setHaltArray(List<Halt> haltArray) {
 		this.haltArray = haltArray;
 	}
 	
