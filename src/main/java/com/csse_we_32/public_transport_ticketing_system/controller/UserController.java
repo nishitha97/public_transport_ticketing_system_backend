@@ -13,11 +13,6 @@ import java.util.List;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/v1/users")
-/**
- * controller class to handle all user services
- *
- * @author IT17006880
- */
 public class UserController {
 
     @Autowired
@@ -86,13 +81,6 @@ public class UserController {
         userService.deleteUser(userId);
 
     }
-    
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @GetMapping("/test")
-    public void test123() {
-       System.out.println("testing 123");
-    }
-
 }
 
 

@@ -1,11 +1,9 @@
 package com.csse_we_32.public_transport_ticketing_system.repository;
 
+import com.csse_we_32.public_transport_ticketing_system.domain.Ticket;
 import org.springframework.data.mongodb.repository.MongoRepository;
-
-import com.csse_we_32.public_transport_ticketing_system.domain.BusStand;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BusStandRepository extends MongoRepository<BusStand,String>{
-
+public interface TicketRepository extends MongoRepository<Ticket, String> {
 }
