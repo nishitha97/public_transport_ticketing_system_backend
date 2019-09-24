@@ -24,7 +24,7 @@ public class User {
 
     private String email;
 
-    // private String creditCardNo;
+    private String creditCardNo;
 
     @Size(max = 11)
     private String nic;
@@ -43,7 +43,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.email = email;
-        //this.creditCardNo = creditCardNo;
+        this.creditCardNo = creditCardNo;
         this.nic = nic;
         this.contactNo = contactNo;
         this.userType = userType;
@@ -82,13 +82,13 @@ public class User {
     }
 
 
-//    public String getCreditCardNo() {
-//        return creditCardNo;
-//    }
-//
-//    public void setCreditCardNo(String creditCardNo) {
-//        this.creditCardNo = creditCardNo;
-//    }
+    public String getCreditCardNo() {
+        return creditCardNo;
+    }
+
+    public void setCreditCardNo(String creditCardNo) {
+        this.creditCardNo = creditCardNo;
+    }
 
     public String getNic() {
         return nic;
