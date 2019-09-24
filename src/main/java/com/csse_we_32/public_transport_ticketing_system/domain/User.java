@@ -3,14 +3,11 @@ package com.csse_we_32.public_transport_ticketing_system.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.validation.constraints.Size;
-import java.util.Collection;
 
 @Document(collection = "users")
-public class User implements UserDetails {
+public class User {
 
 
     @Id
@@ -35,15 +32,13 @@ public class User implements UserDetails {
     @Size(max = 11,min = 10)
     private String contactNo;
     
-   // private UserType userType;
-
-    private Collection<? extends GrantedAuthority> authorities;//type
+    private UserType userType;
 
     
     
     
-    public User(String username, String password, String email, @Size(max = 11) String nic,
-			@Size(max = 11, min = 10) String contactNo, Collection<? extends GrantedAuthority> authorities) {
+    public User(String username, String password, String email, String creditCardNo, @Size(max = 11) String nic,
+			@Size(max = 11, min = 10) String contactNo, UserType userType) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -51,17 +46,20 @@ public class User implements UserDetails {
 		//this.creditCardNo = creditCardNo;
 		this.nic = nic;
 		this.contactNo = contactNo;
-		//this.userType = userType;
-		this.authorities=authorities;
+		this.userType = userType;
 	}
 
-
+	public String getUsername() {
+        return username;
+    }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-
+    public String getPassword() {
+        return password;
+    }
 
     public void setPassword(String password) {
         this.password = password;
@@ -100,67 +98,17 @@ public class User implements UserDetails {
         this.nic = nic;
     }
 
-//	public UserType getUserType() {
-//		return userType;
-//	}
-//
-//	public void setUserType(UserType userType) {
-//		this.userType = userType;
-//	}
+	public UserType getUserType() {
+		return userType;
+	}
+
+	public void setUserType(UserType userType) {
+		this.userType = userType;
+	}
 
 	public void setId(String id) {
 		this.id = id;
 	}
-
-    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
-        this.authorities = authorities;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        // TODO Auto-generated method stub
-        return authorities;
-    }
-
-    @Override
-    public String getPassword() {
-        // TODO Auto-generated method stub
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        // TODO Auto-generated method stub
-        return username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        // TODO Auto-generated method stub
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        // TODO Auto-generated method stub
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        // TODO Auto-generated method stub
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        // TODO Auto-generated method stub
-        return true;
-    }
-
-
-
-
     
     
 }
