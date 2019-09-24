@@ -1,6 +1,7 @@
 package com.csse_we_32.public_transport_ticketing_system.service;
 
 import com.csse_we_32.public_transport_ticketing_system.domain.User;
+import com.csse_we_32.public_transport_ticketing_system.security.JwtUser;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -43,4 +44,8 @@ public interface UserService {
      * @param userId User id
      */
     void deleteUser(String userId);
+
+    JwtUser getJWtUser(String username);
+
+    public User getUserByUserName(String username);
 }
