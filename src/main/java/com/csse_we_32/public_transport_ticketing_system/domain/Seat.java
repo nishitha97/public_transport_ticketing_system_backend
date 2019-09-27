@@ -1,10 +1,14 @@
 package com.csse_we_32.public_transport_ticketing_system.domain;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Date;
-
+@Document(collection = "seats")
 public class Seat {
-
-
+	@Id
+	private String id;
+	private String travelId;
 	private String seatNo;
 	private String smartCardId;
 	private String from;
@@ -13,8 +17,9 @@ public class Seat {
 	private Boolean purchased;
 	
 	
-	public Seat(String seatNo, String smartCardId, String from, String to, Date bookedTime, Boolean purchased) {
+	public Seat(String travelId,String seatNo, String smartCardId, String from, String to, Date bookedTime, Boolean purchased) {
 		super();
+		this.travelId=travelId;
 		this.seatNo = seatNo;
 		this.smartCardId = smartCardId;
 		this.from = from;
@@ -22,6 +27,23 @@ public class Seat {
 		this.bookedTime = bookedTime;
 		this.purchased = purchased;
 	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getTravelId() {
+		return travelId;
+	}
+
+	public void setTravelId(String travelId) {
+		this.travelId = travelId;
+	}
+
 	public String getSeatNo() {
 		return seatNo;
 	}

@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Travel {
 	@Id
 	private String id;
-	private List<Seat> seats;
+	//private List<Seat> seats;
 	private String busStand;
 	private String to;
 	private Date leaveTime;
@@ -19,14 +19,13 @@ public class Travel {
 	private String currentHalt;
 	private Bus bus;
 	private Route route;
-	public Travel(List<Seat> seats, String busStand, String to, Date leaveTime, Date arrivalTime, String currentHalt, Bus bus, Route route) {
+	public Travel( String busStand, String to, Date leaveTime, Date arrivalTime, String currentHalt, Bus bus, Route route) {
 		super();
-		this.seats = seats;
+		//this.seats = seats;
 		this.busStand = busStand;
 		this.to = to;
 		this.leaveTime = leaveTime;
 		this.arrivalTime = arrivalTime;
-	
 		this.currentHalt = currentHalt;
 		this.bus = bus;
 		this.route=route;
@@ -38,12 +37,7 @@ public class Travel {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public List<Seat> getSeats() {
-		return seats;
-	}
-	public void setSeats(List<Seat> seats) {
-		this.seats = seats;
-	}
+
 	public String getBusStand() {
 		return busStand;
 	}
