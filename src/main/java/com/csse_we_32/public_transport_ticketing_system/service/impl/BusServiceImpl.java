@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BusServiceImpl implements BusService {
@@ -18,4 +19,21 @@ public class BusServiceImpl implements BusService {
     public List<Bus> getAllBusses() {
         return busRepository.findAll();
     }
+
+    @Override
+    public Optional<Bus> findByRegNumber(String regNumber) {
+        return busRepository.findByRegNumber(regNumber);
+    }
+
+    @Override
+    public List<Bus> findByBusStand(String stand) {
+        return busRepository.findByBusStand(stand);
+    }
+
+    @Override
+    public Bus save(Bus bus) {
+        return busRepository.save(bus);
+    }
+
+
 }

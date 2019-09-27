@@ -1,5 +1,6 @@
 package com.csse_we_32.public_transport_ticketing_system.domain;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Generated;
@@ -16,11 +17,15 @@ public class SmartCard {
 	private String userId;
 	private List<Ticket> tickets;
 	private double amount;
-	public SmartCard(String userId, List<Ticket> tickets, double amount) {
+	private Date lastUpdatedDataTime;
+
+
+	public SmartCard(String userId, List<Ticket> tickets, double amount,Date lastUpdatedDataTime) {
 		super();
 		this.userId = userId;
 		this.tickets = tickets;
 		this.amount = amount;
+		this.lastUpdatedDataTime=lastUpdatedDataTime;
 	}
 	public String getId() {
 		return id;
@@ -46,11 +51,6 @@ public class SmartCard {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	
-	
-	
-	
-	
-	
-	
+	public Date getLastUpdatedDataTime() { return lastUpdatedDataTime; }
+	public void setLastUpdatedDataTime(Date lastUpdatedDataTime) { this.lastUpdatedDataTime = lastUpdatedDataTime; }
 }

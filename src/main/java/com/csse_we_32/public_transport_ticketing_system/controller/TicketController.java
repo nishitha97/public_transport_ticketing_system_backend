@@ -24,7 +24,6 @@ public class TicketController {
 
     @GetMapping()
     public ResponseEntity<List<Ticket>> getTickets() {
-
         return ResponseEntity.status(HttpStatus.OK).body(ticketService.getAllTickets());
 
     }

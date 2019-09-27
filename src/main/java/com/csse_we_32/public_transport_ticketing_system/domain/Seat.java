@@ -44,11 +44,9 @@ public class Seat {
 	public void setTo(String to) {
 		this.to = to;
 	}
-
 	public Date getBookedTime() {
 		return bookedTime;
 	}
-
 	public void setBookedTime(Date bookedTime) {
 		this.bookedTime = bookedTime;
 	}

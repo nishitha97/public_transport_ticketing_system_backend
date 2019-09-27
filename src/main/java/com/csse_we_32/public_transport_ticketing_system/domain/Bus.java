@@ -2,10 +2,12 @@ package com.csse_we_32.public_transport_ticketing_system.domain;
 
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "buses")
 public class Bus {
+    @Id
 	private String regNumber;
 	private String userId;
 	private List<Integer> seatArrangement;

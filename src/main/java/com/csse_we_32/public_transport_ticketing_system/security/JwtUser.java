@@ -25,6 +25,26 @@ public class JwtUser implements UserDetails{
 		this.authorities = authorities;
 	}
 
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setROLE_USER(String ROLE_USER) {
+		this.ROLE_USER = ROLE_USER;
+	}
+
+	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+		this.authorities = authorities;
+	}
+
+	public String getROLE_USER() {
+		return ROLE_USER;
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub

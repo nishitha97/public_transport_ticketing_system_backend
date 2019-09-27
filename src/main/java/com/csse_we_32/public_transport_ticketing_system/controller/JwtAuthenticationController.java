@@ -1,9 +1,6 @@
 package com.csse_we_32.public_transport_ticketing_system.controller;
 
-import com.csse_we_32.public_transport_ticketing_system.security.JwtRequest;
-import com.csse_we_32.public_transport_ticketing_system.security.JwtResponse;
-import com.csse_we_32.public_transport_ticketing_system.security.JwtTokenUtil;
-import com.csse_we_32.public_transport_ticketing_system.security.JwtUserDetailsService;
+import com.csse_we_32.public_transport_ticketing_system.security.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,7 +27,7 @@ public class JwtAuthenticationController {
 
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-        final UserDetails userDetails = userDetailsService
+        final JwtUser userDetails = userDetailsService
                 .loadUserByUsername(authenticationRequest.getUsername());
 
         final String token = jwtTokenUtil.generateToken(userDetails);
