@@ -3,6 +3,8 @@ package com.csse_we_32.public_transport_ticketing_system.domain;
 import java.util.Date;
 
 public class Seat {
+
+
 	private String seatNo;
 	private String smartCardId;
 	private String from;

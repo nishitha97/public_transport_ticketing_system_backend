@@ -1,5 +1,8 @@
 package com.csse_we_32.public_transport_ticketing_system.domain;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 
@@ -18,15 +21,38 @@ public class SmartCard {
 	private List<Ticket> tickets;
 	private double amount;
 	private Date lastUpdatedDataTime;
+	private String QRCode;
 
 
-	public SmartCard(String userId, List<Ticket> tickets, double amount,Date lastUpdatedDataTime) {
+	public SmartCard(String userId, List<Ticket> tickets, double amount) {
 		super();
 		this.userId = userId;
 		this.tickets = tickets;
 		this.amount = amount;
-		this.lastUpdatedDataTime=lastUpdatedDataTime;
+		this.lastUpdatedDataTime=new Date();
 	}
+
+	public String getQRCode() {
+		return QRCode;
+	}
+
+	public void setQRCode(String QRCode) {
+		this.QRCode = lastUpdatedDataTime.toString()+id;
+		String originalString=lastUpdatedDataTime.toString()+id;;
+		MessageDigest digest = null;
+		byte[] encodedhash;
+		try {
+			digest = MessageDigest.getInstance("SHA-256");
+			encodedhash = digest.digest(
+					originalString.getBytes(StandardCharsets.UTF_8));
+		} catch (NoSuchAlgorithmException e) {
+			encodedhash="0".getBytes();
+			e.printStackTrace();
+		}
+
+		this.QRCode=encodedhash.toString();
+	}
+
 	public String getId() {
 		return id;
 	}

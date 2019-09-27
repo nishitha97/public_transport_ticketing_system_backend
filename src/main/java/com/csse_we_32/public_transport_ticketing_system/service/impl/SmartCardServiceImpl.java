@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SmartCardServiceImpl implements SmartCardService {
@@ -19,4 +20,16 @@ public class SmartCardServiceImpl implements SmartCardService {
     public List<SmartCard> getAllSmartCards() {
         return smartCardRepository.findAll();
     }
+
+    @Override
+    public Optional<SmartCard> getById(String Id) {
+        return smartCardRepository.findById(Id);
+    }
+
+    @Override
+    public Optional<SmartCard> getByUserId(String userId) {
+        return smartCardRepository.findByUserId(userId);
+    }
+
+
 }

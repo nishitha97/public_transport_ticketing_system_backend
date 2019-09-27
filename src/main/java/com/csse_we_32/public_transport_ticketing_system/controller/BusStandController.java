@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -20,13 +21,20 @@ public class BusStandController {
     BusStandService busStandService;
 
     @PostMapping("/save")
-    public ResponseEntity<BusStand> getBusStands(BusStand busStand) {
+    public ResponseEntity<BusStand> saveBusStands(BusStand busStand) {
 
         return ResponseEntity.status(HttpStatus.OK).body(busStandService.save(busStand));
 
     }
 
-    @GetMapping()
+    @GetMapping("/id/{id}")
+    public ResponseEntity<Optional<BusStand>> getBusStandById(@PathVariable("id") String id) {
+
+        return ResponseEntity.status(HttpStatus.OK).body(busStandService.getStandById(id));
+
+    }
+
+    @GetMapping("/all")
     public ResponseEntity<List<BusStand>> getBusStands() {
 
         return ResponseEntity.status(HttpStatus.OK).body(busStandService.getAllStands());
