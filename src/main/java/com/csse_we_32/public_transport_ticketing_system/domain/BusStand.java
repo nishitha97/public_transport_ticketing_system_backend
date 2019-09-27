@@ -8,13 +8,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "bus_stands")
 public class BusStand {
 	@Id
-	private String id;
+	private String id;//homagama/colombo
+	//use city name and district name in simple letters
 	private String name;
 	private String address;
 	private List<TimeSlot> timeSlots;
-	public BusStand( String name, String address, List<TimeSlot> timeSlots) {
+	public BusStand( String id,String name, String address, List<TimeSlot> timeSlots) {
 		super();
-
+		this.id=id;
 		this.name = name;
 		this.address = address;
 		this.timeSlots = timeSlots;
