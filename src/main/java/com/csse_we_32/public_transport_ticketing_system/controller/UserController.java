@@ -1,6 +1,7 @@
 package com.csse_we_32.public_transport_ticketing_system.controller;
 
 import com.csse_we_32.public_transport_ticketing_system.domain.User;
+import com.csse_we_32.public_transport_ticketing_system.domain.UserType;
 import com.csse_we_32.public_transport_ticketing_system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,9 +25,15 @@ public class UserController {
      * @param user User object
      * @return ResponseEntity containing the created user
      */
-    @PostMapping()
-    public ResponseEntity<User> addUser(@Valid @RequestBody User user) {
+    @PostMapping("/passenger")
+    public ResponseEntity<User> addPassenger(@Valid @RequestBody User user) {
+        user.setUserType(UserType.PASSENGER);
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(user));
 
+    }
+    @PostMapping("/inspector")
+    public ResponseEntity<User> addInspector(@Valid @RequestBody User user) {
+        user.setUserType(UserType.INSPECTOR);
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(user));
 
     }
