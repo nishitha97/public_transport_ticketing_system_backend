@@ -2,10 +2,16 @@ package com.csse_we_32.public_transport_ticketing_system.controller;
 
 import com.csse_we_32.public_transport_ticketing_system.domain.User;
 import com.csse_we_32.public_transport_ticketing_system.domain.UserType;
+import com.csse_we_32.public_transport_ticketing_system.security.*;
+import com.csse_we_32.public_transport_ticketing_system.service.AuthService;
 import com.csse_we_32.public_transport_ticketing_system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -19,6 +25,12 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+   AuthService authService;
+
     /**
      * controller for creating a new user
      *
@@ -26,9 +38,12 @@ public class UserController {
      * @return ResponseEntity containing the created user
      */
     @PostMapping("/passenger")
-    public ResponseEntity<User> addPassenger(@Valid @RequestBody User user) {
+    public ResponseEntity<?>  addPassenger(@Valid @RequestBody User user) throws Exception {
         user.setUserType(UserType.PASSENGER);
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(user));
+        String password=user.getPassword();
+       userService.createUser(user);
+        return authService.createAuthenticationToken(new JwtRequest(user.getUsername(),password));
+
 
     }
     @PostMapping("/inspector")
@@ -72,6 +87,7 @@ public class UserController {
     @GetMapping("/{userId}")
     public ResponseEntity<User> getAUser(@PathVariable("userId") String userId) {
 
+
         return ResponseEntity.status(HttpStatus.OK).body(userService.getUser(userId));
 
     }
@@ -87,6 +103,17 @@ public class UserController {
 
         userService.deleteUser(userId);
 
+    }
+
+
+    private void authenticate(String username, String password) throws Exception {
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+        } catch (DisabledException e) {
+            throw new Exception("USER_DISABLED", e);
+        } catch (BadCredentialsException e) {
+            throw new Exception("INVALID_CREDENTIALS", e);
+        }
     }
 }
 
