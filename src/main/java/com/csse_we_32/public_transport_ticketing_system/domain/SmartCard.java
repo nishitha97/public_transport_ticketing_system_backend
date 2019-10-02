@@ -37,20 +37,22 @@ public class SmartCard {
 	}
 
 	public void setQRCode(String QRCode) {
-		this.QRCode = lastUpdatedDataTime.toString()+id;
-		String originalString=lastUpdatedDataTime.toString()+id;;
-		MessageDigest digest = null;
-		byte[] encodedhash;
-		try {
-			digest = MessageDigest.getInstance("SHA-256");
-			encodedhash = digest.digest(
-					originalString.getBytes(StandardCharsets.UTF_8));
-		} catch (NoSuchAlgorithmException e) {
-			encodedhash="0".getBytes();
-			e.printStackTrace();
-		}
 
-		this.QRCode=encodedhash.toString();
+		this.QRCode=QRCode;
+//		this.QRCode = lastUpdatedDataTime.toString()+id;
+//		String originalString=lastUpdatedDataTime.toString()+id+secretKey;;
+//		MessageDigest digest = null;
+//		byte[] encodedhash;
+//		try {
+//			digest = MessageDigest.getInstance("SHA-256");
+//			encodedhash = digest.digest(
+//					originalString.getBytes(StandardCharsets.UTF_8));
+//		} catch (NoSuchAlgorithmException e) {
+//			encodedhash="0".getBytes();
+//			e.printStackTrace();
+//		}
+//
+//		this.QRCode=encodedhash.toString();
 	}
 
 	public String getId() {
