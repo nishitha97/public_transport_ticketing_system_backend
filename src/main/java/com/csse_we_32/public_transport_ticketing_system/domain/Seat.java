@@ -15,9 +15,10 @@ public class Seat {
 	private String to;
 	private Date bookedTime;
 	private Boolean purchased;
+    private double price;
 	
 	
-	public Seat(String travelId,String seatNo, String smartCardId, String from, String to, Date bookedTime, Boolean purchased) {
+	public Seat(String travelId,String seatNo, String smartCardId, String from, String to, Date bookedTime, Boolean purchased,double price) {
 		super();
 		this.travelId=travelId;
 		this.seatNo = seatNo;
@@ -26,6 +27,7 @@ public class Seat {
 		this.to = to;
 		this.bookedTime = bookedTime;
 		this.purchased = purchased;
+		this.price=price;
 	}
 
 	public String getId() {
@@ -80,7 +82,12 @@ public class Seat {
 	public void setPurchased(Boolean purchased) {
 		this.purchased = purchased;
 	}
-	
-	
 
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 }
