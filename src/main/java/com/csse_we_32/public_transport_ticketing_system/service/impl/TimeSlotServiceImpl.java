@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TimeSlotServiceImpl implements TimeSlotService {
@@ -18,5 +19,20 @@ public class TimeSlotServiceImpl implements TimeSlotService {
     @Override
     public List<TimeSlot> getAllTimeSlots() {
         return timeSlotRepository.findAll();
+    }
+
+    @Override
+    public List<TimeSlot> findByFrom(String from) {
+        return timeSlotRepository.findByFrom(from);
+    }
+
+    @Override
+    public List<TimeSlot> findByFromAndDay(String from,String day) {
+        return timeSlotRepository.findByFromAndDay(from,day);
+    }
+
+    @Override
+    public TimeSlot save(TimeSlot timeSlot) {
+        return timeSlotRepository.save(timeSlot);
     }
 }

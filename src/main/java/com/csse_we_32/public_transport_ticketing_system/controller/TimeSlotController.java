@@ -7,11 +7,9 @@ import com.csse_we_32.public_transport_ticketing_system.service.TimeSlotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -22,10 +20,33 @@ public class TimeSlotController {
     @Autowired
     TimeSlotService timeSlotService;
 
+    @PostMapping("/passenger")
+    public ResponseEntity<?>  save(@Valid @RequestBody TimeSlot timeSlot) throws Exception {
+
+        return ResponseEntity.status(HttpStatus.OK).body(timeSlotService.save(timeSlot));
+
+
+    }
+
+
     @GetMapping()
     public ResponseEntity<List<TimeSlot>> getTimeSlots() {
 
         return ResponseEntity.status(HttpStatus.OK).body(timeSlotService.getAllTimeSlots());
+
+    }
+
+    @GetMapping("/getByFrom")
+    public ResponseEntity<List<TimeSlot>> getTimeSlotByStand(String from) {
+
+        return ResponseEntity.status(HttpStatus.OK).body(timeSlotService.findByFrom(from));
+
+    }
+
+    @GetMapping("/getByFroAndDay")
+    public ResponseEntity<List<TimeSlot>> getTimeSlotByStandAndDay(String from,String day) {
+
+        return ResponseEntity.status(HttpStatus.OK).body(timeSlotService.findByFromAndDay(from,day));
 
     }
 
