@@ -20,7 +20,7 @@ public class TimeSlotController {
     @Autowired
     TimeSlotService timeSlotService;
 
-    @PostMapping("/passenger")
+    @PostMapping("/save")
     public ResponseEntity<?>  save(@Valid @RequestBody TimeSlot timeSlot) throws Exception {
 
         return ResponseEntity.status(HttpStatus.OK).body(timeSlotService.save(timeSlot));
@@ -36,14 +36,14 @@ public class TimeSlotController {
 
     }
 
-    @GetMapping("/getByFrom")
+    @PostMapping("/getByFrom")
     public ResponseEntity<List<TimeSlot>> getTimeSlotByStand(String from) {
 
         return ResponseEntity.status(HttpStatus.OK).body(timeSlotService.findByFrom(from));
 
     }
 
-    @GetMapping("/getByFroAndDay")
+    @PostMapping("/getByFromAndDay")
     public ResponseEntity<List<TimeSlot>> getTimeSlotByStandAndDay(String from,String day) {
 
         return ResponseEntity.status(HttpStatus.OK).body(timeSlotService.findByFromAndDay(from,day));
