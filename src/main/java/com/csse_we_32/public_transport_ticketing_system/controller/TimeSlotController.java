@@ -36,14 +36,14 @@ public class TimeSlotController {
 
     }
 
-    @GetMapping("/getByFrom/{from}")
+    @RequestMapping("/getByFrom/{from}")
     public ResponseEntity<List<TimeSlot>> getTimeSlotByStand(@PathVariable("from") String from) {
 
         return ResponseEntity.status(HttpStatus.OK).body(timeSlotService.findByFrom(from));
 
     }
 
-    @GetMapping("/getByFromAndDay/{from}/{day}")
+    @RequestMapping("/getByFromAndDay/{from}/{day}")
     public ResponseEntity<List<TimeSlot>> getTimeSlotByStandAndDay(@PathVariable("from") String from,@PathVariable("day") String day) {
 
         return ResponseEntity.status(HttpStatus.OK).body(timeSlotService.findByFromAndDay(from,day));
