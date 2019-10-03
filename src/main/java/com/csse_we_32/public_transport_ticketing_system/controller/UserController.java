@@ -51,7 +51,8 @@ public class UserController {
     }
 
     @PostMapping("/getUserByToken")
-    public ResponseEntity<?>  getUser(@Valid @RequestBody JwtToken jwtToken) throws Exception {
+    public ResponseEntity<User>  getUserByToken(@RequestBody JwtToken jwtToken
+                                             ) throws Exception {
         String userName=jwtTokenUtil.getUsernameFromToken(jwtToken.getJwttoken());
         return ResponseEntity.status(HttpStatus.OK).body(userService.getUserByUserName(userName));
 
