@@ -36,6 +36,11 @@ public class TimeSlotServiceImpl implements TimeSlotService {
         return timeSlotRepository.save(timeSlot);
     }
 
+    @Override
+    public Optional<TimeSlot> finById(String id) {
+        return timeSlotRepository.findById(id);
+    }
+
 
 }
 

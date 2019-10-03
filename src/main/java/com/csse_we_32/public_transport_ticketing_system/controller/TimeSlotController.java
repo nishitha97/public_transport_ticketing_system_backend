@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -36,17 +37,24 @@ public class TimeSlotController {
 
     }
 
-    @RequestMapping("/getByFrom/{from}")
+    @GetMapping("/getByFrom/{from}")
     public ResponseEntity<List<TimeSlot>> getTimeSlotByStand(@PathVariable("from") String from) {
 
         return ResponseEntity.status(HttpStatus.OK).body(timeSlotService.findByFrom(from));
 
     }
 
-    @RequestMapping("/getByFromAndDay/{from}/{day}")
+    @GetMapping("/getByFromAndDay/{from}/{day}")
     public ResponseEntity<List<TimeSlot>> getTimeSlotByStandAndDay(@PathVariable("from") String from,@PathVariable("day") String day) {
 
         return ResponseEntity.status(HttpStatus.OK).body(timeSlotService.findByFromAndDay(from,day));
+
+    }
+
+    @GetMapping("/getById/{id}")
+    public ResponseEntity<Optional<TimeSlot>> findById(@PathVariable("id") String id) {
+
+        return ResponseEntity.status(HttpStatus.OK).body(timeSlotService.finById(id));
 
     }
 

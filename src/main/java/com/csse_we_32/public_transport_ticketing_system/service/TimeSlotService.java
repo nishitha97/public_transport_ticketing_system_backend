@@ -10,4 +10,5 @@ public interface TimeSlotService {
     List<TimeSlot> findByFrom(String from);
     List<TimeSlot> findByFromAndDay(String from,String day);
     TimeSlot save(TimeSlot timeSlot);
+    Optional<TimeSlot> finById(String id);
 }
