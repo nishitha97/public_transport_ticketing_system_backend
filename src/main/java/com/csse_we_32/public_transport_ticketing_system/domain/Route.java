@@ -10,6 +10,8 @@ public class Route {
 	@Id
 	private String id;
 	//private String RouteType;
+	//to
+	//from
 	private List<Halt> haltArray;
 	private double costPerKm;
 	public Route(String id, List<Halt> haltArray) {

@@ -16,6 +16,8 @@ public class Seat {
 	private Date bookedTime;
 	private Boolean purchased;
     private double price;
+    private int feedback;
+
 	
 	
 	public Seat(String travelId,String seatNo, String smartCardId, String from, String to, Date bookedTime, Boolean purchased,double price) {
