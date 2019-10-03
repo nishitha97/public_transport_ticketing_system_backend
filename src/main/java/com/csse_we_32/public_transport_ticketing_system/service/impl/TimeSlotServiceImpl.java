@@ -23,12 +23,12 @@ public class TimeSlotServiceImpl implements TimeSlotService {
 
     @Override
     public List<TimeSlot> findByFrom(String from) {
-        return timeSlotRepository.findByFrom(from);
+        return timeSlotRepository.findByFromIgnoreCaseContaining(from);
     }
 
     @Override
     public List<TimeSlot> findByFromAndDay(String from,String day) {
-        return timeSlotRepository.findByFromAndDay(from,day);
+        return timeSlotRepository.findByFromIgnoreCaseContainingAndDayIgnoreCaseContaining(from,day);
     }
 
     @Override

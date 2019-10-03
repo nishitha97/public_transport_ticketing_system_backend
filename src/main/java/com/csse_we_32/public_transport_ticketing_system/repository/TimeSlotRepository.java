@@ -10,8 +10,8 @@ import java.util.Optional;
 @Repository
 public interface TimeSlotRepository extends MongoRepository<TimeSlot, String> {
 
-    List<TimeSlot> findByFrom(String from);
-    List<TimeSlot> findByFromAndDay(String from,String day);
+    List<TimeSlot> findByFromIgnoreCaseContaining(String from);
+    List<TimeSlot> findByFromIgnoreCaseContainingAndDayIgnoreCaseContaining(String from,String day);
 
 
 
