@@ -15,6 +15,8 @@ public class User {
 
     private String username;
 
+    private String userFullName;
+
     private String password;
 
     private String email;
@@ -33,7 +35,7 @@ public class User {
 
 
 
-    public User(String username, String password, String email, String creditCardNo, @Size(max = 11) String nic,
+    public User(String username,String userFullName, String password, String email, String creditCardNo, @Size(max = 11) String nic,
                 @Size(max = 11, min = 10) String contactNo, UserType userType,String profileImg) {
         super();
         this.username = username;
@@ -44,6 +46,7 @@ public class User {
         this.contactNo = contactNo;
         this.userType = userType;
         this.profileImg=profileImg;
+        this.userFullName=userFullName;
     }
     public String getId() {
         return id;
@@ -116,5 +119,13 @@ public class User {
 
     public void setProfileImg(String profileImg) {
         this.profileImg = profileImg;
+    }
+
+    public String getUserFullName() {
+        return userFullName;
+    }
+
+    public void setUserFullName(String userFullName) {
+        this.userFullName = userFullName;
     }
 }

@@ -54,7 +54,9 @@ public class UserController {
     public ResponseEntity<User>  getUserByToken(@RequestBody JwtToken jwtToken
                                              ) throws Exception {
         String userName=jwtTokenUtil.getUsernameFromToken(jwtToken.getJwttoken());
-        return ResponseEntity.status(HttpStatus.OK).body(userService.getUserByUserName(userName));
+        User user=userService.getUserByUserName(userName);
+        user.setPassword(null);
+        return ResponseEntity.status(HttpStatus.OK).body(user);
 
 
     }
