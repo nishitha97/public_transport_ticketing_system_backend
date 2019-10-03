@@ -30,6 +30,8 @@ public class UserController {
 
     @Autowired
    AuthService authService;
+    @Autowired
+    JwtTokenUtil jwtTokenUtil;
 
     /**
      * controller for creating a new user
@@ -43,6 +45,14 @@ public class UserController {
         String password=user.getPassword();
        userService.createUser(user);
         return authService.createAuthenticationToken(new JwtRequest(user.getUsername(),password));
+
+
+    }
+
+    @PostMapping("/getUserByToken")
+    public ResponseEntity<?>  getUser(@Valid @RequestBody JwtResponse jwtResponse) throws Exception {
+        String userName=jwtTokenUtil.getUsernameFromToken(jwtResponse.getToken());
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getUserByUserName(userName));
 
 
     }
