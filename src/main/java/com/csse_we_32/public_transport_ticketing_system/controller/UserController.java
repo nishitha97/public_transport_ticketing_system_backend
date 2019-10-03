@@ -1,5 +1,6 @@
 package com.csse_we_32.public_transport_ticketing_system.controller;
 
+import com.csse_we_32.public_transport_ticketing_system.domain.JwtToken;
 import com.csse_we_32.public_transport_ticketing_system.domain.User;
 import com.csse_we_32.public_transport_ticketing_system.domain.UserType;
 import com.csse_we_32.public_transport_ticketing_system.security.*;
@@ -50,8 +51,8 @@ public class UserController {
     }
 
     @PostMapping("/getUserByToken")
-    public ResponseEntity<?>  getUser(@Valid @RequestBody JwtResponse jwtToken) throws Exception {
-        String userName=jwtTokenUtil.getUsernameFromToken(jwtToken.getToken());
+    public ResponseEntity<?>  getUser(@Valid @RequestBody JwtToken jwtToken) throws Exception {
+        String userName=jwtTokenUtil.getUsernameFromToken(jwtToken.getJwttoken());
         return ResponseEntity.status(HttpStatus.OK).body(userService.getUserByUserName(userName));
 
 
