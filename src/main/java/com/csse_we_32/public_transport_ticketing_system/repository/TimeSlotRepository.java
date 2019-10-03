@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface TimeSlotRepository extends MongoRepository<TimeSlot, String> {
 
     List<TimeSlot> findByFromIgnoreCaseContaining(String from);
-    List<TimeSlot> findByFromIgnoreCaseContainingAndDayIgnoreCaseContaining(String from,String day);
+    List<TimeSlot> findByFromIgnoreCaseContainingAndDayContaining(String from,String day);
 
 
 
