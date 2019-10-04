@@ -31,5 +31,9 @@ public class SmartCardServiceImpl implements SmartCardService {
         return smartCardRepository.findByUserId(userId);
     }
 
+    @Override
+    public SmartCard save(SmartCard smartCard){
+        return smartCardRepository.save(smartCard);
+    }
 
 }

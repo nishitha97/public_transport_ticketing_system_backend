@@ -9,4 +9,5 @@ public interface SmartCardService {
     List<SmartCard> getAllSmartCards();
     Optional<SmartCard> getById(String Id);
     Optional<SmartCard> getByUserId(String userId);
+    SmartCard save(SmartCard smartCard);
 }

@@ -41,4 +41,11 @@ public class SmartCardController {
 
     }
 
+    @PostMapping("/save")
+    public ResponseEntity<SmartCard> save(SmartCard smartCard) {
+
+        return ResponseEntity.status(HttpStatus.OK).body(smartCardService.save(smartCard));
+
+    }
+
 }
