@@ -4,12 +4,15 @@ package com.csse_we_32.public_transport_ticketing_system.controller;
 import com.csse_we_32.public_transport_ticketing_system.domain.TimeSlot;
 import com.csse_we_32.public_transport_ticketing_system.domain.User;
 import com.csse_we_32.public_transport_ticketing_system.service.TimeSlotService;
+import com.csse_we_32.public_transport_ticketing_system.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,6 +50,13 @@ public class TimeSlotController {
     @GetMapping("/getByFromAndDay/{from}/{day}")
     public ResponseEntity<List<TimeSlot>> getTimeSlotByStandAndDay(@PathVariable("from") String from,@PathVariable("day") String day) {
 
+        return ResponseEntity.status(HttpStatus.OK).body(timeSlotService.findByFromAndDay(from,day));
+
+    }
+
+    @GetMapping("/getByFromAndDate/{from}/{date}")
+    public ResponseEntity<List<TimeSlot>> getTimeSlotByStandAndDate(@PathVariable("from") String from,@PathVariable("date") String dateString) {
+        String day=DateUtil.getDayByDate(dateString);
         return ResponseEntity.status(HttpStatus.OK).body(timeSlotService.findByFromAndDay(from,day));
 
     }

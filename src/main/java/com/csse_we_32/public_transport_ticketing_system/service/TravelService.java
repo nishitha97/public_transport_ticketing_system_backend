@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface TravelService {
     List<Travel> getAllTravels();
     Optional<Travel> getTravelById(String id);
+    Travel getTravelByTimeSlotAndDate(String travelId,String date);
 }
