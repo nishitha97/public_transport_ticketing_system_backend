@@ -53,4 +53,42 @@ public class DateUtil {
         }
         return day;
     }
+
+    public static  String getDayByDate(Date date){
+        String day="";
+        try {
+
+
+
+
+            switch (date.getDay()) {
+                case 0:
+                    day = SUNDAY;
+                    break;
+                case 1:
+                    day = MONDAY;
+                    break;
+                case 2:
+                    day = TUESDAY;
+                    break;
+                case 3:
+                    day = WEDNESDAY;
+                    break;
+                case 4:
+                    day = THURSDAY;
+                    break;
+                case 5:
+                    day = FRIDAY;
+                    break;
+                case 6:
+                    day = SATURDAY;
+                    break;
+
+            }
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return day;
+    }
 }
