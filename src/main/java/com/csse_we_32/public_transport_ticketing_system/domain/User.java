@@ -23,6 +23,7 @@ public class User {
 
     private String creditCardNo;
 
+    private String expireDate;
     @Size(max = 11)
     private String nic;
 
@@ -35,18 +36,20 @@ public class User {
 
 
 
-    public User(String username,String userFullName, String password, String email, String creditCardNo, @Size(max = 11) String nic,
+    public User(String username,String userFullName, String password, String email, String creditCardNo,String expireDate, @Size(max = 11) String nic,
                 @Size(max = 11, min = 10) String contactNo, UserType userType,String profileImg) {
         super();
         this.username = username;
         this.password = password;
         this.email = email;
         this.creditCardNo = creditCardNo;
+        this.expireDate=expireDate;
         this.nic = nic;
         this.contactNo = contactNo;
         this.userType = userType;
         this.profileImg=profileImg;
         this.userFullName=userFullName;
+
     }
     public String getId() {
         return id;
@@ -127,5 +130,13 @@ public class User {
 
     public void setUserFullName(String userFullName) {
         this.userFullName = userFullName;
+    }
+
+    public String getExpireDate() {
+        return expireDate;
+    }
+
+    public void setExpireDate(String expireDate) {
+        this.expireDate = expireDate;
     }
 }

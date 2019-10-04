@@ -5,23 +5,28 @@ import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+/*
+when we scan the user
+qr code,set the Checklist
 
+
+ */
 @Document(collection = "tasks")
 public class Task {
 	@Id
 	private String id;
 	private Date date;
 	private String zone;
-	private  List<String> inspectorIds;//user id
+	private  String inspectorId;//user id
 	private List<CheckUp> CheckList;
 	
 	
 	
-	public Task(Date date, String zone, List<String> inspectorIds, List<CheckUp> checkList) {
+	public Task(Date date, String zone, String inspectorId, List<CheckUp> checkList) {
 		super();
 		this.date = date;
 		this.zone = zone;
-		this.inspectorIds = inspectorIds;
+		this.inspectorId=inspectorId;
 		CheckList = checkList;
 	}
 	public String getId() {
@@ -49,13 +54,13 @@ public class Task {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public List<String> getInspectorIds() {
-		return inspectorIds;
+
+
+	public String getInspectorId() {
+		return inspectorId;
 	}
-	public void setInspectorIds(List<String> inspectorIds) {
-		this.inspectorIds = inspectorIds;
+
+	public void setInspectorId(String inspectorId) {
+		this.inspectorId = inspectorId;
 	}
-	
-	
-	
 }

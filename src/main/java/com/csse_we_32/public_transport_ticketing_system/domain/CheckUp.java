@@ -6,7 +6,7 @@ public class CheckUp {
 	private String travelId;
 	private String checkUptHalt;
 	private Date checkUpTime;
-	private String inspectorId;//user id
+	//private String inspectorId;//user id
 	public CheckUp(String travelId, String checkUptHalt, Date checkUpTime) {
 		super();
 		this.travelId = travelId;
