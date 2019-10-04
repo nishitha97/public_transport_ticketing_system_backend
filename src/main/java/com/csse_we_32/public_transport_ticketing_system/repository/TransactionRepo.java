@@ -10,5 +10,6 @@ import java.util.List;
 @Repository
 public interface TransactionRepo extends MongoRepository<Transaction,String> {
    List<Transaction> findByDateAfterAndDateBefore(Date startDate, Date endDate);
+    List<Transaction> findByDateBetween(Date startDate, Date endDate);
 
 }

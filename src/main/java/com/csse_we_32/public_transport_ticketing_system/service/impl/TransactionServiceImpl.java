@@ -15,7 +15,8 @@ public class TransactionServiceImpl implements TransactionService {
     private TransactionRepo transactionRepo;
     @Override
     public List<Transaction> findByDateAfterAndDateBefore(Date startDate, Date endDate) {
-        return transactionRepo.findByDateAfterAndDateBefore(startDate,endDate);
+      //  return transactionRepo.findByDateAfterAndDateBefore(startDate,endDate);
+        return  transactionRepo.findByDateBetween(startDate,endDate);
     }
 
     @Override
