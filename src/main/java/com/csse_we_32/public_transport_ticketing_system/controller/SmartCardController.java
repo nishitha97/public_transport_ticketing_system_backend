@@ -1,16 +1,21 @@
 package com.csse_we_32.public_transport_ticketing_system.controller;
 
 
+import com.csse_we_32.public_transport_ticketing_system.domain.JwtToken;
 import com.csse_we_32.public_transport_ticketing_system.domain.SmartCard;
 import com.csse_we_32.public_transport_ticketing_system.domain.Transaction;
 import com.csse_we_32.public_transport_ticketing_system.domain.User;
+import com.csse_we_32.public_transport_ticketing_system.security.JwtTokenUtil;
+import com.csse_we_32.public_transport_ticketing_system.service.AuthService;
 import com.csse_we_32.public_transport_ticketing_system.service.SmartCardService;
+import com.csse_we_32.public_transport_ticketing_system.service.UserService;
 import com.csse_we_32.public_transport_ticketing_system.service.impl.QRCodeGenerator;
 import com.csse_we_32.public_transport_ticketing_system.service.impl.TransactionServiceImpl;
 import com.csse_we_32.public_transport_ticketing_system.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -30,6 +35,17 @@ public class SmartCardController {
 
     @Autowired
     TransactionServiceImpl transactionService;
+
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    AuthService authService;
+    @Autowired
+    JwtTokenUtil jwtTokenUtil;
 
     @GetMapping()
     public ResponseEntity<List<SmartCard>> getSmartCards() {
@@ -76,6 +92,17 @@ public class SmartCardController {
         qrCodeGenerator.setQrCode(smartCard);
         smartCard.setAmount(smartCard.getAmount()+amount);
         return ResponseEntity.status(HttpStatus.OK).body(smartCardService.save(smartCard));
+
+    }
+
+    @PostMapping("/getSmartCardByToken")
+    public ResponseEntity<Optional<SmartCard>>  getSmartCardByToken(@RequestBody JwtToken jwtToken
+    ) throws Exception {
+        String userName=jwtTokenUtil.getUsernameFromToken(jwtToken.getJwttoken());
+        User user=userService.getUserByUserName(userName);
+        user.setPassword(null);
+        return ResponseEntity.status(HttpStatus.OK).body(smartCardService.getByUserId(user.getId()));
+
 
     }
 

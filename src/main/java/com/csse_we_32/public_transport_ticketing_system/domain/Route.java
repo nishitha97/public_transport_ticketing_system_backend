@@ -14,10 +14,11 @@ public class Route {
 	//from
 	private List<Halt> haltArray;
 	private double costPerKm;
-	public Route(String id, List<Halt> haltArray) {
+	public Route(String id, List<Halt> haltArray,double costPerKm) {
 		super();
 		this.id = id;
 		this.haltArray = haltArray;
+		this.costPerKm=costPerKm;
 	}
 	public String getId() {
 		return id;
@@ -31,7 +32,12 @@ public class Route {
 	public void setHaltArray(List<Halt> haltArray) {
 		this.haltArray = haltArray;
 	}
-	
-	
-	
+
+	public double getCostPerKm() {
+		return costPerKm;
+	}
+
+	public void setCostPerKm(double costPerKm) {
+		this.costPerKm = costPerKm;
+	}
 }

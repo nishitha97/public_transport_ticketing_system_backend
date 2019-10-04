@@ -28,4 +28,10 @@ public class SeatController {
 
     }
 
+    @GetMapping("/seatBookingTableData")
+    public ResponseEntity<List<Seat>> getSeatBookingTableData(String travelId,String from,String to){
+
+        return ResponseEntity.status(HttpStatus.OK).body(seatService.getBookedSeatPerTravel(travelId,from,to));
+    }
+
 }

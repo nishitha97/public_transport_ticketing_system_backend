@@ -26,10 +26,10 @@ public class TravelController {
 
     }
 
-    @GetMapping("get/{travelId}/{date}")
-    public ResponseEntity<Travel> getTravel(@PathVariable("travelId") String travelId,@PathVariable("date") String date) {
+    @GetMapping("get/{timeSlotId}/{date}")
+    public ResponseEntity<Travel> getTravel(@PathVariable("timeSlotId") String timeSlotId,@PathVariable("date") String date) {
 
-        return ResponseEntity.status(HttpStatus.OK).body(travelService.getTravelByTimeSlotAndDate(travelId,date));
+        return ResponseEntity.status(HttpStatus.OK).body(travelService.getTravelByTimeSlotAndDate(timeSlotId,date));
 
     }
 
