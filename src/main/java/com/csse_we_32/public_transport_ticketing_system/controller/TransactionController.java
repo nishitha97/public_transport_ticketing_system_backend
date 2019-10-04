@@ -1,5 +1,6 @@
 package com.csse_we_32.public_transport_ticketing_system.controller;
 
+import com.csse_we_32.public_transport_ticketing_system.DataClasses.DayTransaction;
 import com.csse_we_32.public_transport_ticketing_system.domain.TimeSlot;
 import com.csse_we_32.public_transport_ticketing_system.domain.Transaction;
 import com.csse_we_32.public_transport_ticketing_system.service.impl.TransactionServiceImpl;
@@ -36,6 +37,13 @@ public class TransactionController {
     public ResponseEntity<List<Transaction>> findAllTimeDuartion(@PathVariable("startDate") String startDate,@PathVariable("endDate") String endDate ) throws Exception {
 
         return ResponseEntity.status(HttpStatus.OK).body(transactionService.findByDateAfterAndDateBefore(DateUtil.getDateByString(startDate),DateUtil.getDateByString(endDate)));
+
+    }
+
+    @GetMapping("/timeDuration/day/{startDate}/{endDate}")
+    public ResponseEntity<List<DayTransaction>> findAllTimeDuartionWithDay(@PathVariable("startDate") String startDate, @PathVariable("endDate") String endDate ) throws Exception {
+
+        return ResponseEntity.status(HttpStatus.OK).body(transactionService.findByDateAfterAndDateBeforeAccordingToDay(DateUtil.getDateByString(startDate),DateUtil.getDateByString(endDate)));
 
     }
 
