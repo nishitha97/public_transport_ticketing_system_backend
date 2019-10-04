@@ -8,13 +8,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateUtil {
-    public static final String SUNDAY="Sunday";
-    public static final String SATURDAY="Saturday";
-    public static final String MONDAY="Monday";
-    public static final String TUESDAY="TuesDay";
-    public static final String WEDNESDAY="Wednesday";
-    public static final String THURSDAY="Thursday";
-    public static final String FRIDAY="Friday";
+
+
+    public static  final String[] days={"Sunday","Monday","TuesDay","Wednesday","Thursday","Friday","Saturday"};
 
 
     public static  String getDayByDate(String dateString){
@@ -46,25 +42,25 @@ public class DateUtil {
 
             switch (date.getDay()) {
                 case 0:
-                    day = SUNDAY;
+                    day = days[0];
                     break;
                 case 1:
-                    day = MONDAY;
+                    day = days[1];
                     break;
                 case 2:
-                    day = TUESDAY;
+                    day = days[2];
                     break;
                 case 3:
-                    day = WEDNESDAY;
+                    day = days[3];
                     break;
                 case 4:
-                    day = THURSDAY;
+                    day = days[4];
                     break;
                 case 5:
-                    day = FRIDAY;
+                    day = days[5];
                     break;
                 case 6:
-                    day = SATURDAY;
+                    day = days[6];
                     break;
 
             }
