@@ -3,6 +3,7 @@ package com.csse_we_32.public_transport_ticketing_system.util;
 import org.springframework.stereotype.Component;
 import sun.awt.ModalExclude;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,43 +19,25 @@ public class DateUtil {
 
     public static  String getDayByDate(String dateString){
         String day = "";
+
+
+        Date date = null;
         try {
-
-            Date date = new SimpleDateFormat("dd-MM-yyyy").parse(dateString);
-
-            date.getDay();
-            switch (date.getDay()) {
-                case 0:
-                    day = SUNDAY;
-                    break;
-                case 1:
-                    day = MONDAY;
-                    break;
-                case 2:
-                    day = TUESDAY;
-                    break;
-                case 3:
-                    day = WEDNESDAY;
-                    break;
-                case 4:
-                    day = THURSDAY;
-                    break;
-                case 5:
-                    day = FRIDAY;
-                    break;
-                case 6:
-                    day = SATURDAY;
-                    break;
-
-            }
-
-        }catch (Exception ex){
-            ex.printStackTrace();
+            date = new SimpleDateFormat("dd-MM-yyyy").parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-        return day;
+
+
+        return integerToDay(date);
     }
 
     public static  String getDayByDate(Date date){
+        String day=integerToDay(date);
+        return day;
+    }
+
+    private static String integerToDay(Date date){
         String day="";
         try {
 
@@ -89,6 +72,24 @@ public class DateUtil {
         }catch (Exception ex){
             ex.printStackTrace();
         }
-        return day;
+
+        return  day;
     }
+
+    public static  Date getDateByString(String dateString){
+
+
+
+        Date date = null;
+        try {
+            date = new SimpleDateFormat("dd-MM-yyyy").parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        return date;
+    }
+
+
 }
