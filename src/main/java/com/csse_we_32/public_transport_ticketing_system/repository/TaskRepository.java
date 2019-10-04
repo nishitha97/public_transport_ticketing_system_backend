@@ -10,5 +10,5 @@ import java.util.Optional;
 @Repository
 public interface TaskRepository extends MongoRepository<Task, String> {
 
-    Optional<Task> findByInspectorIds(String s);
+    Optional<Task> findByInspectorId(String s);
 }
