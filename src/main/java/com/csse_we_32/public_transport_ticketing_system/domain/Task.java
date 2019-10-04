@@ -15,14 +15,15 @@ qr code,set the Checklist
 public class Task {
 	@Id
 	private String id;
-	private Date date;
+	private String date;
+	private String busStand;
 	private String zone;
 	private  String inspectorId;//user id
 	private List<CheckUp> CheckList;
 	
 	
 	
-	public Task(Date date, String zone, String inspectorId, List<CheckUp> checkList) {
+	public Task(String date, String zone, String inspectorId, List<CheckUp> checkList) {
 		super();
 		this.date = date;
 		this.zone = zone;
@@ -48,13 +49,22 @@ public class Task {
 	public void setCheckList(List<CheckUp> checkList) {
 		CheckList = checkList;
 	}
-	public Date getDate() {
+
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+
+	public void setDate(String date) {
 		this.date = date;
 	}
 
+	public String getBusStand() {
+		return busStand;
+	}
+
+	public void setBusStand(String busStand) {
+		this.busStand = busStand;
+	}
 
 	public String getInspectorId() {
 		return inspectorId;

@@ -34,10 +34,14 @@ public class User {
 
     private String profileImg;
 
+    private String busStand;
+
+    private  String lastUpdateDate;
+
 
 
     public User(String username,String userFullName, String password, String email, String creditCardNo,String expireDate, @Size(max = 11) String nic,
-                @Size(max = 11, min = 10) String contactNo, UserType userType,String profileImg) {
+                @Size(max = 11, min = 10) String contactNo, UserType userType,String profileImg,String busStand,String lastUpdateDate) {
         super();
         this.username = username;
         this.password = password;
@@ -49,6 +53,9 @@ public class User {
         this.userType = userType;
         this.profileImg=profileImg;
         this.userFullName=userFullName;
+        this.busStand=busStand;
+        this.lastUpdateDate=lastUpdateDate;
+
 
     }
     public String getId() {
@@ -138,5 +145,21 @@ public class User {
 
     public void setExpireDate(String expireDate) {
         this.expireDate = expireDate;
+    }
+
+    public String getBusStand() {
+        return busStand;
+    }
+
+    public void setBusStand(String busStand) {
+        this.busStand = busStand;
+    }
+
+    public String getLastUpdateDate() {
+        return lastUpdateDate;
+    }
+
+    public void setLastUpdateDate(String lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
     }
 }

@@ -50,6 +50,16 @@ public class UserController {
 
     }
 
+    @PutMapping("/passenger")
+    public ResponseEntity<?>  updatePassenger(@Valid @RequestBody User user) throws Exception {
+        user.setUserType(UserType.PASSENGER);
+        String password=user.getPassword();
+        userService.createUser(user);
+        return authService.createAuthenticationToken(new JwtRequest(user.getUsername(),password));
+
+
+    }
+
     @PostMapping("/getUserByToken")
     public ResponseEntity<User>  getUserByToken(@RequestBody JwtToken jwtToken
                                              ) throws Exception {
@@ -103,6 +113,18 @@ public class UserController {
 
 
         return ResponseEntity.status(HttpStatus.OK).body(userService.getUser(userId));
+
+    }
+    /*
+    date shoud be day-mont-year
+
+     */
+
+    @GetMapping("/{busStand}/{date}")
+    public ResponseEntity<List<User>> getFreeInspecters(@PathVariable("busStand") String busStand,@PathVariable("date") String date) {
+
+
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getFreeInspector(busStand,date));
 
     }
 

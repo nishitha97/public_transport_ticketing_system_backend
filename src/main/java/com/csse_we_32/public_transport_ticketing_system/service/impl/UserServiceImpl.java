@@ -52,6 +52,12 @@ public class UserServiceImpl implements UserService {
     public User getUserByUserName(String username) {
         return userRepository.findByUsername(username);
     }
+
+    @Override
+    public List<User> getFreeInspector(String busStand, String date) {
+        return userRepository.findByBusStandAndLastUpdateDateNot(busStand,date);
+    }
+
     @Override
     public void deleteUser(String userId) {
         userRepository.deleteById(userId);

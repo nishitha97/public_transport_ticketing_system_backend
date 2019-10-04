@@ -48,4 +48,6 @@ public interface UserService {
     JwtUser getJWtUser(String username);
 
     public User getUserByUserName(String username);
+
+    public List<User> getFreeInspector(String busStand,String date);
 }

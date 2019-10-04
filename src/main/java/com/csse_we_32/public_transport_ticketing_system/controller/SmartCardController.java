@@ -4,6 +4,7 @@ package com.csse_we_32.public_transport_ticketing_system.controller;
 import com.csse_we_32.public_transport_ticketing_system.domain.SmartCard;
 import com.csse_we_32.public_transport_ticketing_system.domain.User;
 import com.csse_we_32.public_transport_ticketing_system.service.SmartCardService;
+import com.csse_we_32.public_transport_ticketing_system.service.impl.QRCodeGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,9 @@ public class SmartCardController {
     @Autowired
     SmartCardService smartCardService;
 
+    @Autowired
+    QRCodeGenerator qrCodeGenerator;
+
     @GetMapping()
     public ResponseEntity<List<SmartCard>> getSmartCards() {
 
@@ -27,6 +31,7 @@ public class SmartCardController {
 
     }
 
+    //
     @GetMapping("/smartCardId/{id}")
     public ResponseEntity<Optional<SmartCard>> getSmartCardById(@PathVariable("id") String id) {
 
@@ -43,9 +48,28 @@ public class SmartCardController {
 
     @PostMapping("/save")
     public ResponseEntity<SmartCard> save(SmartCard smartCard) {
-
+        qrCodeGenerator.setQrCode(smartCard);
         return ResponseEntity.status(HttpStatus.OK).body(smartCardService.save(smartCard));
 
     }
+
+    @PutMapping ("/save")
+    public ResponseEntity<SmartCard> upadteWithoutTransaction(SmartCard smartCard) {
+        qrCodeGenerator.setQrCode(smartCard);
+        smartCard.setAmount(smartCardService.getById(smartCard.getId()).get().getAmount());
+        return ResponseEntity.status(HttpStatus.OK).body(smartCardService.save(smartCard));
+
+    }
+
+    @PutMapping ("/TopUp/{smartCardId}/{amount}")
+    public ResponseEntity<SmartCard> topUp(@PathVariable("smartCardId") String smartCardId,@PathVariable double amount) {
+        SmartCard smartCard=smartCardService.getById(smartCardId).get();
+
+        qrCodeGenerator.setQrCode(smartCard);
+        smartCard.setAmount(smartCard.getAmount()+amount);
+        return ResponseEntity.status(HttpStatus.OK).body(smartCardService.save(smartCard));
+
+    }
+
 
 }
