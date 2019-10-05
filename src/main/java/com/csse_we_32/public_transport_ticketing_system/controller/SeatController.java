@@ -25,8 +25,8 @@ public class SeatController {
 
     }
 
-    @GetMapping("/seatBookingTableData")
-    public ResponseEntity<List<Seat>> getSeatBookingTableData(String travelId,String from,String to){
+    @GetMapping("/seatBookingTableData/{travelId}/{from}/{to}")
+    public ResponseEntity<List<Seat>> getSeatBookingTableData(@PathVariable("travelId") String travelId,@PathVariable("from") String from,@PathVariable("to") String to){
 
         return ResponseEntity.status(HttpStatus.OK).body(seatService.getBookedSeatPerTravel(travelId,from,to));
     }

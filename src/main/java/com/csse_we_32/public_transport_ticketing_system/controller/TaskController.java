@@ -27,7 +27,6 @@ public class TaskController {
 
     @PostMapping("/save")
     public ResponseEntity<Task> save(Task task) {
-
         return ResponseEntity.status(HttpStatus.OK).body(taskService.save(task));
 
     }

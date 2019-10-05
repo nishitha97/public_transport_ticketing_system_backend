@@ -37,7 +37,27 @@ public class SeatServiceImpl implements SeatService {
     @Override
     public List<Seat> getBookedSeatPerTravel(String travelId, String from, String to) {
         Travel travel=travelService.getTravelById(travelId).get();
-        List<Halt> haltList=routeService.getByRouteId(travel.getRouteID()).get().getHaltArray();
+        List<Halt> haltList=routeService.getByRouteId(travel.getRouteID()) .get().getHaltArray();
+        List<Halt>BookHaltList= HaltService.getAllHalts(from,to,haltList);
+        List<Seat> AllBookedSeats=seatRepository.findByTravelId(travelId);
+        List<Seat> actualBookedSeats=new ArrayList<>();
+        for(Seat seat:AllBookedSeats){
+            List<Halt> currentSeatHaltList=HaltService.getAllHalts(seat.getFrom(),seat.getTo(),haltList);
+            for(Halt halt:BookHaltList){
+                if(currentSeatHaltList.contains(halt.getName())){
+                    actualBookedSeats.add(seat);
+                    break;
+                }
+            }
+        }
+
+        return actualBookedSeats;
+    }
+
+    @Override
+    public List<Seat> getALLSeatPerTravel(String travelId, String from, String to) {
+        Travel travel=travelService.getTravelById(travelId).get();
+        List<Halt> haltList=routeService.getByRouteId(travel.getRouteID()) .get().getHaltArray();
         List<Halt>BookHaltList= HaltService.getAllHalts(from,to,haltList);
         List<Seat> AllBookedSeats=seatRepository.findByTravelId(travelId);
         List<Seat> actualBookedSeats=new ArrayList<>();
