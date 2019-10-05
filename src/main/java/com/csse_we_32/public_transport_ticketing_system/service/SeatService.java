@@ -11,6 +11,7 @@ public interface SeatService {
     List<Seat> getBookedSeatPerTravel(String travelId,String from,String to);
     List<Seat> getAvailableSeatPerTravel(String travelId,String from,String to);
     List<Seat> findByTravelId(String travelId);
+    List<Seat> findBySmartCardId(String smartCardId);
 
 
 }

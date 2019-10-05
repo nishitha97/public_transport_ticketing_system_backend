@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface SeatRepository extends MongoRepository<Seat, String> {
     List<Seat> findByTravelId(String travelId);
+    List<Seat> findBySmartCardId(String smartCardId);
 }

@@ -10,4 +10,5 @@ public interface SmartCardService {
     Optional<SmartCard> getById(String Id);
     Optional<SmartCard> getByUserId(String userId);
     SmartCard save(SmartCard smartCard);
+
 }

@@ -1,10 +1,7 @@
 package com.csse_we_32.public_transport_ticketing_system.controller;
 
 
-import com.csse_we_32.public_transport_ticketing_system.domain.JwtToken;
-import com.csse_we_32.public_transport_ticketing_system.domain.SmartCard;
-import com.csse_we_32.public_transport_ticketing_system.domain.Transaction;
-import com.csse_we_32.public_transport_ticketing_system.domain.User;
+import com.csse_we_32.public_transport_ticketing_system.domain.*;
 import com.csse_we_32.public_transport_ticketing_system.security.JwtTokenUtil;
 import com.csse_we_32.public_transport_ticketing_system.service.AuthService;
 import com.csse_we_32.public_transport_ticketing_system.service.SmartCardService;
@@ -64,7 +61,6 @@ public class SmartCardController {
 
     @GetMapping("/userId/{id}")
     public ResponseEntity<Optional<SmartCard>> getSmartCardByUserId(@PathVariable("id") String userId) {
-
         return ResponseEntity.status(HttpStatus.OK).body(smartCardService.getByUserId(userId));
 
     }
@@ -100,11 +96,12 @@ public class SmartCardController {
     ) throws Exception {
         String userName=jwtTokenUtil.getUsernameFromToken(jwtToken.getJwttoken());
         User user=userService.getUserByUserName(userName);
-        user.setPassword(null);
+
         return ResponseEntity.status(HttpStatus.OK).body(smartCardService.getByUserId(user.getId()));
 
-
     }
+
+
 
 
 }

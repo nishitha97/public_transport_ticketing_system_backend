@@ -63,4 +63,9 @@ public class SeatServiceImpl implements SeatService {
     public List<Seat> findByTravelId(String travelId) {
         return seatRepository.findByTravelId(travelId);
     }
+
+    @Override
+    public List<Seat> findBySmartCardId(String smartCardId) {
+        return seatRepository.findBySmartCardId(smartCardId);
+    }
 }
