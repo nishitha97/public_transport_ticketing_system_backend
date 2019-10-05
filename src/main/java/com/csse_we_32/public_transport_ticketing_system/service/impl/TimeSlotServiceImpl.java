@@ -38,7 +38,13 @@ public class TimeSlotServiceImpl implements TimeSlotService {
 
     @Override
     public Optional<TimeSlot> finById(String id) {
+
         return timeSlotRepository.findById(id);
+    }
+
+    @Override
+    public void deleteById(String id) {
+        timeSlotRepository.deleteById(id);
     }
 
 

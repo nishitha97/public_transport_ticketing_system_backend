@@ -34,7 +34,7 @@ public class TravelServiceImpl implements TravelService {
     }
 
     @Override
-    public Travel getTravelByTimeSlotAndDate(String timeSlotId,String date) {
+    public Travel getTravelByTimeSlotAndDate(String timeSlotId,Date date) {
         TimeSlot timeSlot=timeSlotRepository.findById(timeSlotId).get();
         Travel travel= travelRepository.findByTimeSlotIdAndDate(timeSlotId,date).get();
 

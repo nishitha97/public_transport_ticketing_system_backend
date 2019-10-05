@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -27,7 +28,7 @@ public class TravelController {
     }
 
     @GetMapping("get/{timeSlotId}/{date}")
-    public ResponseEntity<Travel> getTravel(@PathVariable("timeSlotId") String timeSlotId,@PathVariable("date") String date) {
+    public ResponseEntity<Travel> getTravel(@PathVariable("timeSlotId") String timeSlotId,@PathVariable("date") Date date) {
 
         return ResponseEntity.status(HttpStatus.OK).body(travelService.getTravelByTimeSlotAndDate(timeSlotId,date));
 

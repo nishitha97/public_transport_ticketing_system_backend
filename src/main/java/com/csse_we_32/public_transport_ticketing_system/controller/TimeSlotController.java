@@ -27,8 +27,16 @@ public class TimeSlotController {
     @PostMapping("/save")
     public ResponseEntity<?>  save(@Valid @RequestBody TimeSlot timeSlot) throws Exception {
 
+
         return ResponseEntity.status(HttpStatus.OK).body(timeSlotService.save(timeSlot));
 
+
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<?>  delete( @RequestBody TimeSlot timeSlot) throws Exception {
+        timeSlotService.deleteById(timeSlot.getId());
+        return ResponseEntity.status(HttpStatus.OK).body(timeSlot);
 
     }
 
@@ -55,17 +63,17 @@ public class TimeSlotController {
     }
 
     @GetMapping("/getByFromAndDate/{from}/{date}")
-    public ResponseEntity<List<TimeSlot>> getTimeSlotByStandAndDate(@PathVariable("from") String from,@PathVariable("date") String dateString) {
-        String day=DateUtil.getDayByDate(dateString);
+    public ResponseEntity<List<TimeSlot>> getTimeSlotByStandAndDate(@PathVariable("from") String from,@PathVariable("date") Date date) {
+        String day=DateUtil.getDayByDate(date);
         return ResponseEntity.status(HttpStatus.OK).body(timeSlotService.findByFromAndDay(from,day));
 
     }
 
     @GetMapping("/getById/{id}")
     public ResponseEntity<Optional<TimeSlot>> findById(@PathVariable("id") String id) {
-
         return ResponseEntity.status(HttpStatus.OK).body(timeSlotService.finById(id));
-
     }
+
+
 
 }
