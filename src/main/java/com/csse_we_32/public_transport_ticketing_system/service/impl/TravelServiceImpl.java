@@ -36,15 +36,22 @@ public class TravelServiceImpl implements TravelService {
     @Override
     public Travel getTravelByTimeSlotAndDate(String timeSlotId,Date date) {
         TimeSlot timeSlot=timeSlotRepository.findById(timeSlotId).get();
-        Travel travel= travelRepository.findByTimeSlotIdAndDate(timeSlotId,date).get();
+        Optional<Travel> travel= travelRepository.findByTimeSlotIdAndDate(timeSlotId,date);
 
-        if(travel==null){
-            travel=travelRepository.save(new Travel(timeSlot.getFrom(),timeSlot.getTo(),new Date(),timeSlotId,timeSlot.getLeaveTime(),timeSlot.getArrivalTime(),timeSlot.getFrom(),timeSlot.getBusRegNumber(),timeSlot.getRouteId()));
-                    //String busStand, String to, Date date, String timeSlotId, String leaveTime, String arrivalTime, String currentHalt, String regNumber, String routeID
+      Travel travelT;
+        try {
+            travelT = travel.get();
+        }catch(Exception ex){
+            travelT=travelRepository.save(new Travel(timeSlot.getFrom(),timeSlot.getTo(),new Date(),timeSlotId,timeSlot.getLeaveTime(),timeSlot.getArrivalTime(),timeSlot.getFrom(),timeSlot.getBusRegNumber(),timeSlot.getRouteId()));
 
         }
+//        if(travelT==null){
+//            travelT=travelRepository.save(new Travel(timeSlot.getFrom(),timeSlot.getTo(),new Date(),timeSlotId,timeSlot.getLeaveTime(),timeSlot.getArrivalTime(),timeSlot.getFrom(),timeSlot.getBusRegNumber(),timeSlot.getRouteId()));
+//                    //String busStand, String to, Date date, String timeSlotId, String leaveTime, String arrivalTime, String currentHalt, String regNumber, String routeID
+//
+//        }
 
-        return travel;
+        return travelT;
     }
 
 
