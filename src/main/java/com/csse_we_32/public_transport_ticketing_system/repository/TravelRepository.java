@@ -6,12 +6,13 @@ import com.csse_we_32.public_transport_ticketing_system.domain.Travel;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface TravelRepository extends MongoRepository<Travel,String>{
 
-    Optional<Travel> findByTimeSlotIdAndDate(String timeSlot, Date date);
+    List<Travel> findByTimeSlotIdAndDate(String timeSlotId, Date date);
 
 
 }

@@ -9,7 +9,7 @@ public class Seat {
 	@Id
 	private String id;
 	private String travelId;
-	private String seatNo;
+	private int seatNo;
 	private String smartCardId;
 	private String from;
 	private String to;
@@ -20,7 +20,7 @@ public class Seat {
 
 	
 	
-	public Seat(String travelId,String seatNo, String smartCardId, String from, String to, Date bookedTime, Boolean purchased,double price) {
+	public Seat(String travelId,int seatNo, String smartCardId, String from, String to, Date bookedTime, Boolean purchased,double price) {
 		super();
 		this.travelId=travelId;
 		this.seatNo = seatNo;
@@ -48,12 +48,22 @@ public class Seat {
 		this.travelId = travelId;
 	}
 
-	public String getSeatNo() {
+	public int getSeatNo() {
 		return seatNo;
 	}
-	public void setSeatNo(String seatNo) {
+
+	public void setSeatNo(int seatNo) {
 		this.seatNo = seatNo;
 	}
+
+	public int getFeedback() {
+		return feedback;
+	}
+
+	public void setFeedback(int feedback) {
+		this.feedback = feedback;
+	}
+
 	public String getSmartCardId() {
 		return smartCardId;
 	}

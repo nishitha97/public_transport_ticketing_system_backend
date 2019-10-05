@@ -13,6 +13,7 @@ public interface SeatService {
     List<Seat> findByTravelId(String travelId);
     List<Seat> findBySmartCardId(String smartCardId);
     public List<Seat> getALLSeatPerTravel(String travelId, String from, String to);
+    Seat save(Seat seat);
 
 
 }

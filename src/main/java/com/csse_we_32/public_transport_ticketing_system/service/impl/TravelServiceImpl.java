@@ -8,6 +8,9 @@ import com.csse_we_32.public_transport_ticketing_system.service.TravelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -34,22 +37,34 @@ public class TravelServiceImpl implements TravelService {
     }
 
     @Override
-    public Travel getTravelByTimeSlotAndDate(String timeSlotId,Date date) {
+    public Travel getTravelByTimeSlotAndDate(String timeSlotId,Date dateT) {
+       // SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
+////
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR,dateT.getYear());
+        cal.set(Calendar.MONTH,dateT.getMonth());
+        cal.set(Calendar.DATE,dateT.getDate());
+
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        Date date = cal.getTime();
+
+
+
+        Travel travelT=null;
         TimeSlot timeSlot=timeSlotRepository.findById(timeSlotId).get();
-        Optional<Travel> travel= travelRepository.findByTimeSlotIdAndDate(timeSlotId,date);
+        List<Travel> travelList= travelRepository.findByTimeSlotIdAndDate(timeSlotId,date);
+        if(travelList==null||travelList.isEmpty()){
+            travelT=travelRepository.save(new Travel(timeSlot.getFrom(),timeSlot.getTo(),date,timeSlotId,timeSlot.getLeaveTime(),timeSlot.getArrivalTime(),timeSlot.getFrom(),timeSlot.getBusRegNumber(),timeSlot.getRouteId()));
 
-      Travel travelT;
-        try {
-            travelT = travel.get();
-        }catch(Exception ex){
-            travelT=travelRepository.save(new Travel(timeSlot.getFrom(),timeSlot.getTo(),new Date(),timeSlotId,timeSlot.getLeaveTime(),timeSlot.getArrivalTime(),timeSlot.getFrom(),timeSlot.getBusRegNumber(),timeSlot.getRouteId()));
-
+        }else {
+             travelT=travelList.get(0);
         }
-//        if(travelT==null){
-//            travelT=travelRepository.save(new Travel(timeSlot.getFrom(),timeSlot.getTo(),new Date(),timeSlotId,timeSlot.getLeaveTime(),timeSlot.getArrivalTime(),timeSlot.getFrom(),timeSlot.getBusRegNumber(),timeSlot.getRouteId()));
-//                    //String busStand, String to, Date date, String timeSlotId, String leaveTime, String arrivalTime, String currentHalt, String regNumber, String routeID
-//
-//        }
+
+
 
         return travelT;
     }
