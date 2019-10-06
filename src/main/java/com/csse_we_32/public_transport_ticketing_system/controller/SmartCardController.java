@@ -101,6 +101,17 @@ public class SmartCardController {
 
     }
 
+    @PostMapping("/getQrCode/{qrCode}")
+    public ResponseEntity<Optional<SmartCard>>  getQrCode(@PathVariable("qrCode") String qrCode) {
+
+
+        return ResponseEntity.status(HttpStatus.OK).body(smartCardService.findByQRCode(qrCode));
+
+    }
+
+
+
+
 
 
 

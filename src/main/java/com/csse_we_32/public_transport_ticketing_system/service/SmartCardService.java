@@ -10,5 +10,6 @@ public interface SmartCardService {
     Optional<SmartCard> getById(String Id);
     Optional<SmartCard> getByUserId(String userId);
     SmartCard save(SmartCard smartCard);
+    Optional<SmartCard> findByQRCode(String qrCode);
 
 }

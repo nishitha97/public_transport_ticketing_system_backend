@@ -12,5 +12,6 @@ import java.util.Optional;
 public interface SmartCardRepository extends MongoRepository<SmartCard, String>{
 
     Optional<SmartCard> findByUserId(String userId);
+    Optional<SmartCard> findByQRCode(String qrCode);
 
 }

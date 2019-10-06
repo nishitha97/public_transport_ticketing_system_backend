@@ -36,4 +36,9 @@ public class SmartCardServiceImpl implements SmartCardService {
         return smartCardRepository.save(smartCard);
     }
 
+    @Override
+    public Optional<SmartCard> findByQRCode(String qrCode) {
+        return smartCardRepository.findByQRCode(qrCode);
+    }
+
 }

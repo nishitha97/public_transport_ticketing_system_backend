@@ -3,8 +3,11 @@ package com.csse_we_32.public_transport_ticketing_system.controller;
 
 import com.csse_we_32.public_transport_ticketing_system.DataClasses.SeatSaveData;
 import com.csse_we_32.public_transport_ticketing_system.domain.Seat;
+import com.csse_we_32.public_transport_ticketing_system.domain.SmartCard;
 import com.csse_we_32.public_transport_ticketing_system.domain.User;
 import com.csse_we_32.public_transport_ticketing_system.service.SeatService;
+import com.csse_we_32.public_transport_ticketing_system.service.SmartCardService;
+import com.csse_we_32.public_transport_ticketing_system.service.impl.SmartCardServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +22,9 @@ import java.util.List;
 public class SeatController {
     @Autowired
     SeatService seatService;
+
+    @Autowired
+    SmartCardServiceImpl smartCardService;
 
     @GetMapping()
     public ResponseEntity<List<Seat>> getSeats() {
@@ -50,6 +56,13 @@ public class SeatController {
             response.add(seatR);
         }
         return ResponseEntity.status(HttpStatus.OK).body(response);
+
+    }
+
+    @GetMapping("/getJourneys/{qRCode}")
+    public ResponseEntity<List<Seat>>  getJourneysInspector(@PathVariable("qRCode") String qRCode) {
+        SmartCard smartCard=smartCardService.findByQRCode(qRCode).get();
+        return ResponseEntity.status(HttpStatus.OK).body(seatService.findBySmartCardId(smartCard.getId()));
 
     }
 
