@@ -59,7 +59,7 @@ public class SeatController {
 
     }
 
-    @GetMapping("/getJourneys/{qRCode}")
+    @GetMapping("/getJourneysInspector/{qRCode}")
     public ResponseEntity<List<Seat>>  getJourneysInspector(@PathVariable("qRCode") String qRCode) {
         SmartCard smartCard=smartCardService.findByQRCode(qRCode).get();
         return ResponseEntity.status(HttpStatus.OK).body(seatService.findBySmartCardId(smartCard.getId()));

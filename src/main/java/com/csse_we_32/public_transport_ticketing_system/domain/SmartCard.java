@@ -36,9 +36,9 @@ public class SmartCard {
 		return QRCode;
 	}
 
-	public void setQRCode(String QRCode) {
+	public void setQRCode(String qRCode) {
 
-		this.QRCode=QRCode;
+		this.QRCode=qRCode;
 //		this.QRCode = lastUpdatedDataTime.toString()+id;
 //		String originalString=lastUpdatedDataTime.toString()+id+secretKey;;
 //		MessageDigest digest = null;
