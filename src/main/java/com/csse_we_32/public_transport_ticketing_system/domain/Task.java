@@ -19,7 +19,7 @@ public class Task {
 	private String busStand;
 	private String zone;
 	private  String inspectorId;//user id
-	private List<CheckUp> CheckList;
+	private List<CheckUp> checkList;
 	
 	
 	
@@ -28,7 +28,7 @@ public class Task {
 		this.date = date;
 		this.zone = zone;
 		this.inspectorId=inspectorId;
-		CheckList = checkList;
+		checkList = checkList;
 	}
 	public String getId() {
 		return id;
@@ -44,10 +44,10 @@ public class Task {
 	}
 
 	public List<CheckUp> getCheckList() {
-		return CheckList;
+		return checkList;
 	}
 	public void setCheckList(List<CheckUp> checkList) {
-		CheckList = checkList;
+		checkList = checkList;
 	}
 
 	public String getDate() {
